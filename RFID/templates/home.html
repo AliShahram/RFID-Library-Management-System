@@ -1,0 +1,13 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+{% if user.is_authenticated %}
+  <p>hi fucker</p>
+  <p><a href="{% url 'logout' %}">logout</a></p>
+
+{% endif %}
+{% endblock %}

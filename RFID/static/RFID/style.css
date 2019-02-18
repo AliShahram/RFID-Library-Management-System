@@ -1,0 +1,29 @@
+.header {
+  background-color: 	#A52A2A;
+  color: black;
+  padding: 10px;
+}
+
+.header-title {
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.side-bar {
+  background-color: #282828;
+  height: 100%;
+}
+
+.side-bar-buttons {
+  color: white;
+  background-color: #282828;
+}
+
+a:hover {
+  color: black;
+}
