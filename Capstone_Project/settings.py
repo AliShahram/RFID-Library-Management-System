@@ -121,7 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Redirect the login page
-LOGIN_REDIRECT_URL = '/home'
-LOGOUT_REDIRECT_URL = '/login'
+LOGIN_REDIRECT_URL = '/RFID'
+LOGOUT_REDIRECT_URL = '/RFID/login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

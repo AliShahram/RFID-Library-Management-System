@@ -1,3 +1,14 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-family: "Roboto",sans-serif;
+}
+
+/* ----- Base HTML Page ------ */
+
 .header {
   background-color: 	#A52A2A;
   color: black;
@@ -5,7 +16,7 @@
 }
 
 .header-title {
-  padding: 20px;
+  padding: 10px;
 }
 
 .full-width {
@@ -26,4 +37,19 @@
 
 a:hover {
   color: black;
+}
+
+
+
+/* ----- Home Page ---- */
+
+.search-help {
+  margin: 10px;
+  padding: 10px;
+  color: #727272;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  border-width: 2px;
+
 }

@@ -1,0 +1,22 @@
+<!-- templates/home.html -->
+{% extends 'RFID/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-8">
+    <form method="post" action="search">
+      {% csrf_token %}
+      {{form |crispy}}
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+  <div class="col-sm-2">
+    <div class="search-help">
+      <h6>Directions</h6>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
