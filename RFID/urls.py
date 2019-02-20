@@ -11,5 +11,4 @@ urlpatterns = [
     path('add-user', UserPageView.as_view(), name='add-user'),
     path('get-user', GetUserPageView.as_view(), name='get-user'),
     path('update-user', UpdateUserPageView.as_view(), name='update-user'),
-    #path('delete-user', DeleteUserPageView.as_view(), name='delete-user'),
 ]
