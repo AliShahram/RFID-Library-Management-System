@@ -5,6 +5,7 @@ h4,
 h5,
 h6{
   font-family: "Roboto",sans-serif;
+
 }
 
 /* ----- Base HTML Page ------ */
@@ -50,6 +51,35 @@ a:hover {
   border-style: solid;
   border-color: black;
   border-radius: 10px;
-  border-width: 2px;
+  border-width: 3px;
+}
 
+
+/* ------- User Page ------ */
+
+.message {
+  margin: 10px;
+  margin-left: 30px;
+}
+
+.asteriskField {
+    display: none;
+}
+
+.box-title {
+  border-bottom-style: solid;
+  border-bottom-color: #727272;
+  border-bottom-width: 2px;
+
+}
+
+.box {
+  margin: 10px;
+  padding: 10px;
+  width: 75%;
+  margin-left: 30px;
+}
+
+.form-field {
+  margin-top: 5px;
 }

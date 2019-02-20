@@ -1,10 +1,28 @@
 from django import forms
 from django.forms import ModelForm, TextInput
-from .models import Person
+from .models import *
 
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = ('first_name','last_name')
-        first_name = forms.CharField(label='First name')
-        last_name = forms.CharField(label='Last name')
+        fields = ['first_name','last_name']
+
+
+class AddUser(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('user_id', 'first_name', 'last_name', 'email', 'phone')
+        labels = {
+            "user_id": "",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "phone": "",
+        }
+
+        widgets = {'user_id' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' User ID'}),
+                    'first_name' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' First Name'}),
+                    'last_name' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Last Name'}),
+                    'email' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Email Address'}),
+                    'phone' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Phone Number'}),
+                    }
