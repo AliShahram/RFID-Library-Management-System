@@ -45,7 +45,7 @@ class UserPageView(LoginRequiredMixin, View):
             form.save()
             message = "The user was successfuly added!"
 
-        print(form.errors)    
+        print(form.errors)
         new_form = AddUser()
         context = {'form':new_form, 'message':message}
 
