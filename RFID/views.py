@@ -16,19 +16,10 @@ class HomePageView(LoginRequiredMixin, View):
     redirect_field_name = ''
     template_name = 'RFID/home.html'
 
-    def post(self, request):
-        form = PersonForm(request.POST)
-        form.save()
-        new_form = PersonForm()
-        context = {'form':new_form}
-
-        return render(request, self.template_name, context)
 
     def get(self, request):
-        form = PersonForm()
-        context = {'form':form}
 
-        return render(request, self.template_name, context)
+        return render(request, self.template_name)
 
 
 class UserPageView(LoginRequiredMixin, View):
@@ -37,23 +28,23 @@ class UserPageView(LoginRequiredMixin, View):
     template_name = 'RFID/user.html'
 
     def post(self, request):
-        form = AddUser(request.POST)
+        add_user_form = AddUser(request.POST)
         message = "The user was not added. Please try again!"
 
         # Validate if the information passed in post is valid
-        if form.is_valid():
-            form.save()
+        if add_user_form.is_valid():
+            add_user_form.save()
             message = "The user was successfuly added!"
 
-        print(form.errors)
-        new_form = AddUser()
-        context = {'form':new_form, 'message':message}
+        error = add_user_form.errors
+        form = AddUser()
+        context = {'add_user_form':form, 'add_user_message':message, 'add_user_error': error}
 
         return render(request, self.template_name, context)
 
     def get(self, request):
         form = AddUser()
-        context = {'form':form}
+        context = {'add_user_form':form}
         return render(request, self.template_name, context)
 
 

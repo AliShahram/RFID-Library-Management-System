@@ -2,11 +2,6 @@ from django import forms
 from django.forms import ModelForm, TextInput
 from .models import *
 
-class PersonForm(forms.ModelForm):
-    class Meta:
-        model = Person
-        fields = ['first_name','last_name']
-
 
 class AddUser(forms.ModelForm):
     class Meta:
