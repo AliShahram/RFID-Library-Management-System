@@ -8,4 +8,6 @@ Senior capstone project to create a comprehensive library management system for 
 
 ## Authors
 
-* **Ali Shahram Musavi** - 
+* **Ali Shahram Musavi** 
+Earlham College 19
+
