@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm, TextInput, Form
 from .models import *
+from django.core.exceptions import ValidationError
 
 
 class AddUser(forms.ModelForm):
@@ -25,7 +26,7 @@ class AddUser(forms.ModelForm):
 
 class GetUserID(forms.Form):
     user_id = forms.CharField(max_length=32, label='', required=False,
-    widget=forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' User ID'}))
+    widget=forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' User ID - Optional'}))
 
-    email = forms.EmailField(label='', required=False,
+    email = forms.EmailField(label='', required=True,
     widget = forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Email'}))

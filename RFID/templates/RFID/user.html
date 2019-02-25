@@ -19,7 +19,7 @@
       <div class="box-title">
         <h5>Add New User</h5>
       </div>
-      <form action="add-user" method="post" class="form-group">
+      <form action="user" method="post" class="form-group">
         {% csrf_token %}
         {{add_user_form |crispy}}
         <button type="submit" class="btn btn-success">Submit</button>
@@ -41,7 +41,7 @@
       <div class="box-title">
         <h5>Update/Delete Existing User</h5>
       </div>
-      <p>At least one field required! </p>
+      <p>At least one field required!</p>
       <form action="get-user" method="post" class="form-group">
         {% csrf_token %}
         {{get_id_form |crispy}}
