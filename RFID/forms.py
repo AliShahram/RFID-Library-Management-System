@@ -1,11 +1,6 @@
 from django import forms
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, Form
 from .models import *
-
-class PersonForm(forms.ModelForm):
-    class Meta:
-        model = Person
-        fields = ['first_name','last_name']
 
 
 class AddUser(forms.ModelForm):
@@ -26,3 +21,11 @@ class AddUser(forms.ModelForm):
                     'email' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Email Address'}),
                     'phone' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Phone Number'}),
                     }
+
+
+class GetUserID(forms.Form):
+    user_id = forms.CharField(max_length=32, label='', required=False,
+    widget=forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' User ID'}))
+
+    email = forms.EmailField(label='', required=False,
+    widget = forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Email'}))
