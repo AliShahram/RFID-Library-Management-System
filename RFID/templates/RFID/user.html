@@ -41,7 +41,6 @@
       <div class="box-title">
         <h5>Update/Delete Existing User</h5>
       </div>
-      <p>At least one field required!</p>
       <form action="get-user" method="post" class="form-group">
         {% csrf_token %}
         {{get_id_form |crispy}}

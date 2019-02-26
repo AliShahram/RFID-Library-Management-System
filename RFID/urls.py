@@ -10,4 +10,5 @@ urlpatterns = [
     path('search', HomePageView.as_view(), name='home'),
     path('get-user', GetUserPageView.as_view(), name='get-user'),
     path('update-user', UpdateUserPageView.as_view(), name='update-user'),
+    path('get-object', GetObjectPageView.as_view(), name='get-object'),
 ]

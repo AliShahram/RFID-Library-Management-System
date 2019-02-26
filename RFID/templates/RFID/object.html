@@ -1,1 +1,57 @@
 {% extends 'RFID/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="message">
+        {% if message %}
+          <h6>{{ message }}</h6>
+        {% endif %}
+      </div>
+      <div class="message">
+        {% if error %}
+          <h6>{{ error }}</h6>
+        {% endif %}
+      </div>
+      <div class="box">
+        <div class="box-title">
+          <h5>Add New Object</h5>
+        </div>
+        <form action="object" method="post" class="form-group">
+          {% csrf_token %}
+          {{add_object_form |crispy}}
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="message">
+        {% if update_object_message %}
+          <h6>{{ update_object_message }}</h6>
+        {% endif %}
+      </div>
+      <div class="message">
+        {% if update_user_error %}
+          <h6>{{ update_user_error }}</h6>
+        {% endif %}
+      </div>
+      <div class="box">
+        <div class="box-title">
+          <h5>Update/Delete Existing Object</h5>
+        </div>
+        <form action="get-object" method="post" class="form-group">
+          {% csrf_token %}
+          {{get_object_form |crispy}}
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <div class="box">
+        <h6>Directions:</h6>
+        <p>- Enter object ID and name to search for one specific object</p>
+        <p>- Enter object name only to search for a group of objects with the same name</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

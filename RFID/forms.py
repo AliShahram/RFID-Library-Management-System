@@ -24,9 +24,39 @@ class AddUser(forms.ModelForm):
                     }
 
 
-class GetUserID(forms.Form):
+class GetUser(forms.Form):
     user_id = forms.CharField(max_length=32, label='', required=False,
-    widget=forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' User ID - Optional'}))
+    widget=forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' User ID - Optional'})
+    )
 
     email = forms.EmailField(label='', required=True,
-    widget = forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Email'}))
+    widget = forms.TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Email'})
+    )
+
+
+class AddObject(forms.ModelForm):
+    class Meta:
+        model = Object
+        fields = ('object_id', 'name', 'availability', 'max_time', 'location')
+        labels = {
+            "object_id": "",
+            "name": "",
+            "availability": "",
+            "max_time": "",
+            "location": "",
+        }
+
+        widgets = {'object_id' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Object ID'}),
+                    'name' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Name'}),
+                    'max_time' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Maximum Checkout in days'}),
+                    }
+
+
+class GetObject(forms.Form):
+    object_id = forms.CharField(max_length=32, label='', required=False,
+    widget=forms.TextInput(attrs={'class': 'form-field', 'placeholder': ' Object ID'})
+    )
+
+    name = forms.CharField(max_length=60, label='', required=True,
+    widget=forms.TextInput(attrs={'class': 'form-field', 'placeholder': ' Name'})
+    )
