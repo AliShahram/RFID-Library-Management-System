@@ -9,7 +9,7 @@
       <div class="box-title">
         <h5>Update Existing Object</h5>
       </div>
-      <form action="update-user" method="post" class="form-group">
+      <form action="update-single-object" method="post" class="form-group">
         {% csrf_token %}
         {{form |crispy}}
         <button type="submit" name="Update" class="btn btn-success">Update</button>

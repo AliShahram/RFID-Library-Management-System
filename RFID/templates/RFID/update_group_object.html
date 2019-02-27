@@ -7,9 +7,9 @@
   <div class="col-sm-5">
     <div class="box">
       <div class="box-title">
-        <h5>Update Existing Object</h5>
+        <h5>Update A Group Of Objects</h5>
       </div>
-      <form action="update-user" method="post" class="form-group">
+      <form action="update-Group-object" method="post" class="form-group">
         {% csrf_token %}
         {{form | crispy}}
         <button type="submit" name="Update" class="btn btn-success">Update</button>
@@ -21,9 +21,11 @@
     <div class="row">
       <div class="box">
         <h5>Important!</h5>
-        <h6>There are {{ count }} items with the given name</h6>
-        <h6>Updating the information or deleting will impact</h6>
-        <h6>all the instances with the given name</h6>
+        <ul>
+          <li>There are <span style="font-weight:bold">{{ count }} </span> items with the given name</li>
+          <li>To the left is the general information regarding the group</li>
+          <li>Updating the information or deleting will impact all the instances with the given name</li>
+        </ul>
       </div>
     </div>
   </div>

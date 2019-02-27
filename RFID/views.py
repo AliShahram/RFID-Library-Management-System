@@ -45,8 +45,8 @@ class UserPageView(LoginRequiredMixin, View):
 
         error = add_user_form.errors
         form = AddUser()
-        get_id_form = GetUserID()
-        context = {'add_user_form':form, 'get_id_form':get_id_form, 'add_user_message':message, 'add_user_error': error}
+        get_id_form = GetUser()
+        context = {'add_user_form':form, 'get_id_form':get_id_form, 'message':message, 'error': error}
 
         return render(request, self.template_name, context)
 
@@ -120,9 +120,10 @@ class UpdateUserPageView(LoginRequiredMixin, View):
 
             message = 'User information successfully deleted'
 
+
         get_id_form = GetUser()
         form = AddUser()
-        context = {'add_user_form':form, 'get_id_form':get_id_form, 'add_user_message':message}
+        context = {'add_user_form':form, 'get_id_form':get_id_form, 'message':message}
         return render(request, self.template_name, context)
 
 
@@ -183,28 +184,30 @@ class GetObjectPageView(LoginRequiredMixin, View):
         if form['object_id'].value():
             id = form['object_id'].value()
             obj = Object.objects.get(object_id=id)
+            check = False
             count = 1
-            return (obj, count)
+            return (obj, count, check)
 
         else:
             name = form['name'].value()
-            querySet = Object.objects.filter(name=name)
+            querySet = Object.objects.filter(name__iexact=name)
             count = len(querySet)
-            obj = Object.objects.filter(name=name).first()
-            return (obj, count)
+            obj = Object.objects.filter(name__iexact=name).first()
+            check = True
+            return (obj, count, check)
 
 
     def post(self, request):
         get_object_form = GetObject(request.POST)
-        querySet, count = self.get_object(get_object_form)
+        querySet, count, check = self.get_object(get_object_form)
 
         # If this is just one object
-        if count == 1:
+        if check is False:
             form = AddObject(instance=querySet)
             context = {'form': form}
             return render(request, self.single_object_template, context)
 
         else:
-            form = AddObject(instance=querySet)
+            form = GetGroupObject(instance=querySet)
             context = {'form':form, 'count':count}
             return render(request, self.group_object_template, context)

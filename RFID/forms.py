@@ -60,3 +60,19 @@ class GetObject(forms.Form):
     name = forms.CharField(max_length=60, label='', required=True,
     widget=forms.TextInput(attrs={'class': 'form-field', 'placeholder': ' Name'})
     )
+
+
+
+class GetGroupObject(forms.ModelForm):
+    class Meta:
+        model = Object
+        fields = ('name', 'availability', 'max_time')
+        labels = {
+            "name": "",
+            "availability": "",
+            "max_time": "",
+        }
+
+        widgets = {'name' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Name'}),
+                    'max_time' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Maximum Checkout in days'}),
+                    }
