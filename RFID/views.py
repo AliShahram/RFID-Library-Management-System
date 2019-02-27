@@ -1,8 +1,12 @@
+
+#Generic Imports
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+#Local imports
+from django.views import View
 from RFID.forms import *
 from RFID.models import *
 
