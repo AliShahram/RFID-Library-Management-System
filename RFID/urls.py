@@ -11,4 +11,6 @@ urlpatterns = [
     path('get-user', GetUserPageView.as_view(), name='get-user'),
     path('update-user', UpdateUserPageView.as_view(), name='update-user'),
     path('get-object', GetObjectPageView.as_view(), name='get-object'),
+    path('update-single-object', UpdateSingleObjectView.as_view(), name='update-single-object'),
+    path('update-group-object', UpdateGroupObjectView.as_view(), name='update-group-object'),
 ]

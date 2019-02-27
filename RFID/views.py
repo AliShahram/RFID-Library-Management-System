@@ -23,7 +23,7 @@ class HomePageView(LoginRequiredMixin, View):
 
 
 
-#------------------- User Page --------------------------------
+#------------------- Users --------------------------------
 
 class UserPageView(LoginRequiredMixin, View):
     """ Has the two forms: add and get user
@@ -78,7 +78,6 @@ class GetUserPageView(LoginRequiredMixin, View):
         except:
             redirect('user')
 
-
     def post(self, request):
         get_id_form = GetUser(request.POST)
         obj = self.get_user(get_id_form)
@@ -120,7 +119,6 @@ class UpdateUserPageView(LoginRequiredMixin, View):
 
             message = 'User information successfully deleted'
 
-
         get_id_form = GetUser()
         form = AddUser()
         context = {'add_user_form':form, 'get_id_form':get_id_form, 'message':message}
@@ -128,7 +126,7 @@ class UpdateUserPageView(LoginRequiredMixin, View):
 
 
 
-#---------------------- Object Page -------------------------------
+#---------------------- Objects -------------------------------
 
 class ObjectPageView(LoginRequiredMixin, View):
     """ Main page for objects. Has two forms:
@@ -154,8 +152,6 @@ class ObjectPageView(LoginRequiredMixin, View):
         context = {'add_object_form':object_form, 'get_object_form':get_object_form, 'message':message, 'error':error}
         return render(request, self.template_name, context)
 
-
-
     def get(self, request):
         object_form = AddObject()
         get_object_form = GetObject()
@@ -176,7 +172,6 @@ class GetObjectPageView(LoginRequiredMixin, View):
     single_object_template = 'RFID/update_single_object.html'
     group_object_template = 'RFID/update_group_object.html'
 
-
     def get_object(self, form):
         """Return a queryset based on the
         user input"""
@@ -196,7 +191,6 @@ class GetObjectPageView(LoginRequiredMixin, View):
             check = True
             return (obj, count, check)
 
-
     def post(self, request):
         get_object_form = GetObject(request.POST)
         querySet, count, check = self.get_object(get_object_form)
@@ -211,3 +205,58 @@ class GetObjectPageView(LoginRequiredMixin, View):
             form = GetGroupObject(instance=querySet)
             context = {'form':form, 'count':count}
             return render(request, self.group_object_template, context)
+
+
+
+
+class UpdateSingleObjectView(LoginRequiredMixin, View):
+    """ Gets the object ID or name and redirects to
+    update page, where user can delete or update on object
+    or a set of objects
+    """
+
+    login_url = '/RFID/login/'
+    redirect_field_name = ''
+    template_name = 'RFID/object.html'
+
+
+    def post(self, request):
+        if 'Update' in request.POST:
+            form = AddObject(request.POST)
+            id = form['object_id'].value()
+            Object.objects.filter(object_id=id).update(
+            object_id = form['object_id'].value(),
+            name = form['name'].value(),
+            availability= form['availability'].value(),
+            max_time = form['max_time'].value(),
+            location = form['location'].value(),
+            )
+            message = 'Object information was successfuly updated'
+
+        elif 'Delete' in request.POST:
+            form = AddObject(request.POST)
+            id = form['object_id'].value()
+            obj = get_object_or_404(Object, object_id=id)
+            obj.delete()
+
+            message = 'Object was successfully deleted'
+
+        get_id_form = GetObject()
+        form = AddObject()
+        context = {'add_object_form':form, 'get_object_form':get_id_form, 'message':message}
+        return render(request, self.template_name, context)
+
+
+
+class UpdateGroupObjectView(LoginRequiredMixin, View):
+    """ Gets the object ID or name and redirects to
+    update page, where user can delete or update on object
+    or a set of objects
+    """
+
+    login_url = '/RFID/login/'
+    redirect_field_name = ''
+    template = 'RFID/object.html'
+
+    def post(self, request):
+        return render(request, self.template)
