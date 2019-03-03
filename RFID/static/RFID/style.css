@@ -45,7 +45,7 @@ a:hover {
 /* ----- Home Page ---- */
 
 .search-help {
-  margin: 10px;
+  margin: 40px;
   padding: 10px;
   color: #727272;
   border-style: solid;
@@ -53,6 +53,29 @@ a:hover {
   border-radius: 10px;
   border-width: 3px;
 }
+
+.search-box {
+  margin: 40px;
+}
+
+.database_select{
+  margin: 0px;
+}
+
+.database_choice{
+  width: 150px;
+  display: None;
+}
+
+.active {
+  background: black;
+}
+
+
+
+
+
+
 
 
 /* ------- User Page ------ */

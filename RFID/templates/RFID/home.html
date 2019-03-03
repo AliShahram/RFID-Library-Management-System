@@ -1,17 +1,109 @@
 <!-- templates/home.html -->
 {% extends 'RFID/base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
 <div class="row">
   <div class="col-sm-8">
+    <div class="search-box">
+      {% if message %}
+        <h6>{{ message }}</h6>
+      {% endif %}
+      <h6>Database Table:</h6>
+      <div class="database_select">
+        <button onclick="divVisibility('record_table'); table_is_record();" class="btn btn-info">Records</button>
+        <button onclick="divVisibility('object_table'); table_is_object();" class="btn btn-info">Objects</button>
+        <button onclick="divVisibility('person_table'); table_is_person();" class="btn btn-info">Persons</button>
+      </div>
+
+      <form action="search" method="get" class="form-group">
+        {% csrf_token %}
+        {{form.name |as_crispy_field}}
+        <div id="object_table" class="database_choice">
+          {{form.location |as_crispy_field}}
+          {{form.availability |as_crispy_field}}
+        </div>
+        <div id="record_table" class="database_choice">
+          {{form.record_date |as_crispy_field}}
+          {{form.record_status |as_crispy_field}}
+        </div>
+        <div id="person_table" class="database_choice">
+        </div>
+        {{form.table.as_hidden }}
+        <button type="submit" class="btn btn-success">Search</button>
+      </form>
+    </div>
+    <div class="container">
+      <table class="table table-hover">
+        {% if table == 'object' %}
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Availability</th>
+              <th>Maximim Checkout Days</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+        {% endif %}
+        <tbody>
+          {% for elem in qResult.qs %}
+            <tr>
+              <td>{{ elem.name }}</td>
+              <td>{{ elem.get_availability_display }}</td>
+              <td>{{ elem.max_time }}</td>
+              <td>{{ elem.get_location_display }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="col-sm-2">
-    <div class="search-help">
-      <h6>Directions</h6>
-    </div>
   </div>
 </div>
 
+
+
+
+
+<script type="text/javascript">
+
+function table_is_record() {
+  document.getElementById("id_table").value = "record";
+}
+
+function table_is_object() {
+  document.getElementById("id_table").value = "object";
+}
+
+function table_is_person() {
+  document.getElementById("id_table").value = "person";
+}
+
+  var divs = ["record_table", "object_table", "person_table"];
+     var visibleDivId = null;
+     function divVisibility(divId) {
+       if(visibleDivId === divId) {
+         visibleDivId = null;
+       } else {
+         visibleDivId = divId;
+       }
+       hideNonVisibleDivs();
+     }
+     function hideNonVisibleDivs() {
+       var i, divId, div;
+       for(i = 0; i < divs.length; i++) {
+         divId = divs[i];
+         div = document.getElementById(divId);
+         if(visibleDivId === divId) {
+           div.style.display = "block";
+
+         } else {
+           div.style.display = "none";
+         }
+       }
+     }
+</script>
 {% endblock %}

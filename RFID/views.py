@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from RFID.forms import *
 from RFID.models import *
+from .filters import ObjectFilter
 
 
 #------------------- home page ---------------------------------
@@ -23,8 +24,38 @@ class HomePageView(LoginRequiredMixin, View):
 
 
     def get(self, request):
+        form = SearchBar()
+        context = {'form':form}
+        return render(request, self.template_name, context)
 
-        return render(request, self.template_name)
+
+class SearchHomePage(LoginRequiredMixin, View):
+    login_url = '/RFID/login/'
+    redirect_field_name = ''
+    template_name = 'RFID/home.html'
+    message = ''
+    form = SearchBar()
+
+    def get(self, request):
+        search_form = SearchBar(request.GET)
+
+        #Check if the user has picked a table
+        #If not return to the page and give them a message
+        if search_form['table'].value():
+            #If the table is object table
+            if search_form['table'].value() == 'object':
+                obj_list = Object.objects.all()
+                obj_filter = ObjectFilter(request.GET, queryset=obj_list)
+                table = 'object'
+
+            context = {'form':self.form, 'table':table, 'qResult':obj_filter}
+
+
+        else:
+            self.message = 'Please select a database!'
+            context = {'form':self.form, 'message':self.message}
+
+        return render(request, self.template_name, context)
 
 
 

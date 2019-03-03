@@ -1,8 +1,13 @@
+
+#Django imports
 from django import forms
 from django.forms import ModelForm, TextInput, Form
-from .models import *
 from django.core.exceptions import ValidationError
+import datetime
 
+#Local Imports
+from .models import *
+from .choices import *
 
 class AddUser(forms.ModelForm):
     class Meta:
@@ -76,3 +81,22 @@ class GetGroupObject(forms.ModelForm):
         widgets = {'name' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Name'}),
                     'max_time' : TextInput(attrs={'class' : 'form-field', 'placeholder' : ' Maximum Checkout in days'}),
                     }
+
+
+class SearchBar(forms.Form):
+
+    table = forms.CharField(max_length=50, label='', required=True)
+
+    name = forms.CharField(max_length=50, label='', required=False,
+    widget=forms.TextInput(attrs={'class':'form-field', 'placeholder': 'Search...'}))
+
+    location = forms.ChoiceField(choices = OBJ_LOCATION_CHOICES, label="", initial='', required=False,
+    widget=forms.Select(attrs={'class':'form-field'}))
+
+    availability = forms.ChoiceField(choices = OBJ_AVAILABILITY_CHOICES, label="", initial='', required=False,
+    widget=forms.Select(attrs={'class':'form-field'}))
+
+    record_date = forms.DateField(initial='', label="Date", required=False)
+
+    record_status = forms.ChoiceField(choices = RECORD_STATUS_CHOICES, label="", initial='', required=False,
+    widget=forms.Select(attrs={'class':'form-field'}))
