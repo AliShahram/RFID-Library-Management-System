@@ -42,21 +42,44 @@
             <tr>
               <th>Type</th>
               <th>Availability</th>
-              <th>Maximim Checkout Days</th>
+              <th>Max Checkout Days</th>
               <th>Location</th>
             </tr>
           </thead>
+
+          <tbody>
+            {% for elem in qResult.qs %}
+              <tr>
+                <td>{{ elem.name }}</td>
+                <td>{{ elem.get_availability_display }}</td>
+                <td>{{ elem.max_time }}</td>
+                <td>{{ elem.get_location_display }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
         {% endif %}
-        <tbody>
-          {% for elem in qResult.qs %}
+      </table>
+      <table class="table table-hover">
+        {% if table == 'person' %}
+          <thead>
             <tr>
-              <td>{{ elem.name }}</td>
-              <td>{{ elem.get_availability_display }}</td>
-              <td>{{ elem.max_time }}</td>
-              <td>{{ elem.get_location_display }}</td>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone</th>
             </tr>
-          {% endfor %}
-        </tbody>
+          </thead>
+          <tbody>
+            {% for elem in qResult %}
+              <tr>
+                <td>{{ elem.first_name }}</td>
+                <td>{{ elem.last_name }}</td>
+                <td>{{ elem.email }}</td>
+                <td>{{ elem.phone }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          {% endif %}
       </table>
     </div>
   </div>

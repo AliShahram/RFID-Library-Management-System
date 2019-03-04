@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from RFID.forms import *
 from RFID.models import *
-from .filters import ObjectFilter
+from .filters import *
 
 
 #------------------- home page ---------------------------------
@@ -45,11 +45,25 @@ class SearchHomePage(LoginRequiredMixin, View):
             #If the table is object table
             if search_form['table'].value() == 'object':
                 obj_list = Object.objects.all()
-                obj_filter = ObjectFilter(request.GET, queryset=obj_list)
+                query_result = ObjectFilter(request.GET, queryset=obj_list)
                 table = 'object'
 
-            context = {'form':self.form, 'table':table, 'qResult':obj_filter}
+            #If the table is Persons table
+            elif search_form['table'].value() == 'person':
+                if search_form['name'].value():
+                    fname = search_form['name'].value()
+                    query_result = User.objects.filter(first_name__iexact=fname)
+                else:
+                    query_result = User.objects.all()
+                table = 'person'
 
+            #If the table is records table_is_object
+            elif search_form['table'].value() == 'record':
+                return
+
+
+
+            context = {'form':self.form, 'table':table, 'qResult':query_result}
 
         else:
             self.message = 'Please select a database!'
