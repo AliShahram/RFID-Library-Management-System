@@ -1,0 +1,60 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-family: "Roboto",sans-serif;
+
+}
+
+/* ----- Base HTML Page ------ */
+
+.header {
+  background-color: 	#A52A2A;
+  color: black;
+  padding: 10px;
+}
+
+.header-title {
+  padding: 10px;
+}
+
+.full-width {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.side-bar {
+  background-color: #282828;
+  height: 100%;
+}
+
+.side-bar-buttons {
+  color: white;
+  background-color: #282828;
+}
+
+a:hover {
+  color: black;
+}
+
+
+/* ----- Home Page ---- */
+
+.search-help {
+  margin-top: 40px;
+  margin-right: 10px;
+  padding: 10px;
+  color: #727272;
+}
+
+.search-box {
+  margin: 40px;
+
+}
+
+.user_search {
+  max-width: 150px;
+}
