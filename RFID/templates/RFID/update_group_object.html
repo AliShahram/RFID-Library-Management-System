@@ -1,17 +1,17 @@
 {% extends 'RFID/base.html' %}
 {% load crispy_forms_tags %}
-{% block title %}User{% endblock %}
+{% block title %}Object{% endblock %}
 
 {% block content %}
 <div class="row">
   <div class="col-sm-5">
     <div class="box">
       <div class="box-title">
-        <h5>Update Existing User</h5>
+        <h5>Update A Group Of Objects</h5>
       </div>
-      <form action="update-user" method="post" class="form-group">
+      <form action="update-group-object" method="post" class="form-group">
         {% csrf_token %}
-        {{update_form |crispy}}
+        {{form | crispy}}
         <button type="submit" name="Update" class="btn btn-success">Update</button>
         <button type="submit" name="Delete" class="btn btn-success">Delete</button>
       </form>
@@ -21,6 +21,14 @@
     <div class="row">
       <div class="box">
         <h5> {{ message }}</h5>
+      </div>
+      <div class="box">
+        <h5>Important!</h5>
+        <ul>
+          <li>There are <span style="font-weight:bold">{{ count }} </span> items with the given name</li>
+          <li>To the left is the general information regarding the group</li>
+          <li>Updating the information or deleting will impact all the instances with the given name</li>
+        </ul>
       </div>
     </div>
   </div>
