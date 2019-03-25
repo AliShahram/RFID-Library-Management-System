@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'RFID',
+    'student',
     'crispy_forms',
 ]
 
@@ -122,6 +123,6 @@ STATIC_URL = '/static/'
 
 # Redirect the login page
 LOGIN_REDIRECT_URL = '/RFID'
-LOGOUT_REDIRECT_URL = '/RFID/login'
+LOGOUT_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
