@@ -28,7 +28,7 @@ class UserSearch(View):
         searchbar = SearchBar(request.GET)
         name = searchbar['name'].value()
 
-        querySet = Object.objects.filter(name__iexact=name)
+        querySet = Object.objects.filter(name__icontains=name)
 
         if querySet:
             message = None
