@@ -58,3 +58,7 @@ a:hover {
 .user_search {
   max-width: 150px;
 }
+
+.operation-box {
+  margin-left: 40px;
+}

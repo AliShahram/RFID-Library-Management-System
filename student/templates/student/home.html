@@ -44,6 +44,7 @@
         </div>
         <div class="col-sm-6">
           <div class="search-box">
+            <h6>Search for items</h6>
             <form class="form-group" action="user-search" method="get">
               {% csrf_token %}
               {{searchForm.name |as_crispy_field}}
@@ -64,7 +65,6 @@
                     <th>Location</th>
                   </tr>
                 </thead>
-
                 <tbody>
                   {% for elem in qResult %}
                     <tr>
@@ -77,6 +77,18 @@
                 </tbody>
               {% endif %}
             </table>
+          </div>
+          <div class="col-sm-7">
+            <div class="operation-box">
+              <h6>Perform a check-in or check-out</h6>
+              <form class="form-group" action="user-operation" method="post">
+                {% csrf_token %}
+                {{checkform | crispy}}
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-sm-5">
           </div>
         </div>
         <div class="col-sm-4">

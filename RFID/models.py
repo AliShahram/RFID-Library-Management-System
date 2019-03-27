@@ -43,6 +43,7 @@ class Records(models.Model):
     object_id = models.ForeignKey(Object, on_delete=models.PROTECT)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     status = models.CharField(max_length=1)
+    active = models.BooleanField(default=True)
 
     class Meta:
         unique_together = (('user_id', 'object_id', 'date'),)

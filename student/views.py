@@ -7,6 +7,7 @@ from django.views import View
 from .forms import *
 from django.apps import apps
 Object = apps.get_model('RFID', 'Object')
+from .tools import *
 
 
 
@@ -17,7 +18,8 @@ class UserHomePage(View):
 
     def get(self, request):
         searchbar = SearchBar()
-        context = {'searchForm':searchbar}
+        checkform = Operation()
+        context = {'searchForm':searchbar, 'checkform':checkform}
         return render(request, self.template, context)
 
 
@@ -36,5 +38,21 @@ class UserSearch(View):
             message = "The object does not exist in the system!"
 
         searchbar = SearchBar()
-        context = {'searchForm':searchbar, 'message': message, 'qResult':querySet}
+        checkform = Operation()
+        context = {'searchForm':searchbar, 'message': message, 'qResult':querySet, 'checkform':checkform}
         return render(request, self.template, context)
+
+
+class UserOperation(View):
+    template = 'student/home.html'
+
+    def post(self, request):
+        form = Operation(request.POST)
+
+        #Check if form is valid
+        if form.is_valid():
+            type = form.cleaned_data['type']
+            if type == '1':
+                result = perform_checkout(form)
+            else:
+                result = perform_checkin(form)
