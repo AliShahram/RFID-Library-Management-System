@@ -9,8 +9,6 @@ from django.apps import apps
 Object = apps.get_model('RFID', 'Object')
 from .tools import *
 
-
-
 # Create your views here.
 class UserHomePage(View):
     template = 'student/home.html'

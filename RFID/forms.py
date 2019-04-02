@@ -96,7 +96,10 @@ class SearchBar(forms.Form):
     availability = forms.ChoiceField(choices = OBJ_AVAILABILITY_CHOICES, label="", initial='', required=False,
     widget=forms.Select(attrs={'class':'form-field'}))
 
-    record_date = forms.DateField(initial='', label="Date", required=False)
+    date = forms.DateField(initial='', label="Date", required=False)
 
-    record_status = forms.ChoiceField(choices = RECORD_STATUS_CHOICES, label="", initial='', required=False,
+    type = forms.ChoiceField(choices = RECORD_TYPE_CHOICES, label="", initial='', required=False,
     widget=forms.Select(attrs={'class':'form-field'}))
+
+    status = forms.ChoiceField(choices = RECORD_STATUS_CHOICES, label="", initial='', required=False,
+    widget=forms.Select(attrs={'calss':'form-field'}))

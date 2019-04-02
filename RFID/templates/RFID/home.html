@@ -26,8 +26,9 @@
           {{form.availability |as_crispy_field}}
         </div>
         <div id="record_table" class="database_choice">
-          {{form.record_date |as_crispy_field}}
-          {{form.record_status |as_crispy_field}}
+          {{form.date |as_crispy_field}}
+          {{form.type |as_crispy_field}}
+          {{form.status |as_crispy_field}}
         </div>
         <div id="person_table" class="database_choice">
         </div>
@@ -54,6 +55,31 @@
                 <td>{{ elem.get_availability_display }}</td>
                 <td>{{ elem.max_time }}</td>
                 <td>{{ elem.get_location_display }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        {% endif %}
+      </table>
+      <table class="table table-hover">
+        {% if table == 'record' %}
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Object</th>
+              <th>Time</th>
+              <th>Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for elem in qResult.qs %}
+              <tr>
+                <td>{{ elem.user_id }}</td>
+                <td>{{ elem.object_id }}</td>
+                <td>{{ elem.date }}</td>
+                <td>{{ elem.type }}</td>
+                <td>{{ elem.status }}</td>
               </tr>
             {% endfor %}
           </tbody>

@@ -59,9 +59,30 @@ class SearchHomePage(LoginRequiredMixin, View):
 
             #If the table is records table_is_object
             elif search_form['table'].value() == 'record':
-                return
+                #if the name is empty return all records
+                records_list = Records.objects.all()
+                if search_form['name'].value():
+                    name = search_form['name'].value()
+                    try:
+                        User.objects.get(first_name__iexact=name)
+                        try:
+                            user = User.objects.get(first_name__iexact=name)
+                        except ObjectDoesNotExist:
+                            user=None
+                        USER_ID = user.user_id
+                        records_list = Records.objects.filter(user_id=USER_ID)
 
-
+                    except:
+                        try:
+                            object = Object.objects.get(name__iexact=name)
+                        except ObjectDoesNotExist:
+                            object=None
+                        OBJECT_ID = object.object_id
+                        records_list = Records.objects.filter(object_id=OBJECT_ID)
+                    query_result = RecordsFilter(request.GET, records_list)
+                else:
+                    query_result = RecordsFilter(request.GET, records_list)
+                table = 'record'
 
             context = {'form':self.form, 'table':table, 'qResult':query_result}
 

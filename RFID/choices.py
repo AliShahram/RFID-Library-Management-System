@@ -13,9 +13,15 @@ OBJ_AVAILABILITY_CHOICES = (
 )
 
 
+RECORD_TYPE_CHOICES = (
+    ('', ("-- Type")),
+    (1, ("Check Out")),
+    (2, ("Check In")),
+)
+
+
 RECORD_STATUS_CHOICES = (
     ('', ("-- Status")),
-    (2, ("Check In")),
-    (3, ("Check Out")),
-
+    ('True', ("Active")),
+    ('False', ("Completed")),
 )

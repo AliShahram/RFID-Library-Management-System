@@ -39,11 +39,23 @@ class Object(models.Model):
 
 
 class Records(models.Model):
+    CHECK_OUT = '1'
+    CHECK_IN = '0'
+
+    TYPE_CHOICES = (
+        (CHECK_OUT, 'Check out'),
+        (CHECK_IN, 'Check in'),
+    )
+
+
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     object_id = models.ForeignKey(Object, on_delete=models.PROTECT)
     date = models.DateTimeField(auto_now_add=True, blank=True)
-    status = models.CharField(max_length=1)
-    active = models.BooleanField(default=True)
+    type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=CHECK_OUT)
+    status = models.BooleanField(default=True)
 
     class Meta:
         unique_together = (('user_id', 'object_id', 'date'),)
+
+    def __str__(self):
+        return "%s, %s" %(self.user_id, self.object_id)
