@@ -1,0 +1,15 @@
+{% extends 'student/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class="row">
+    <div class="results_box">
+      <h5> {{ qResult.message }}</h5>
+      <h1> {{ qResult.user_inst.first_name}}</h1>
+      <h1> {{ qResult.user_inst.last_name}}</h1>
+      <h1> {{qResult.avail_checkout}}</h1>
+      <h1> {{qResult.not_avail_checkout}}</h1>
+    </div>
+  </div>
+{% endblock %}

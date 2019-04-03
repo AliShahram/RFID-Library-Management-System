@@ -30,6 +30,36 @@ class CheckOperation:
         return usr, objs
 
 
+    def get_user_instance(self, usr_id):
+        """ gets a user ID and returns an instance of the user
+            returns None if the user doesn't exist"""
+        try:
+            user_inst = User.objects.get(user_id=usr_id)
+        except ObjectDoesNotExist:
+            user_inst = None
+        return user_inst
+
+
+    def get_object_instance(self, obj_id):
+        """ gets an object ID and return an instance of the object
+            return None if the user does'nt exist"""
+        try:
+            obj_inst = Object.objects.get(object_id=obj_id)
+        except:
+            obj_inst = None
+        return obj_inst
+
+
+    def change_obj_availability(self, obj_inst):
+        """ if object is unavailable make it available, and vice versa"""
+
+        if obj_inst.availability == 'N':
+            obj_inst.availability = 'Y'
+        else:
+            obj_inst.availability = 'N'
+        obj_inst.save()
+
+
     def check_user_status(self, usr_id):
         """Check if the user is allowed to check out items.
            Measures:
@@ -42,13 +72,10 @@ class CheckOperation:
                 numItems = number of items the user can check out
         """
 
-        try:
-            user_inst = User.objects.get(user_id=usr_id)
-        except ObjectDoesNotExist:
-            user_inst = None
+        user_inst = self.get_user_instance(usr_id)
 
         if user_inst:
-            history = Records.objects.filter(user_id=usr_id, status=1, active=True)
+            history = Records.objects.filter(user_id=usr_id, type=1, status=True)
             if len(history) >= 5:
                 allowed = False
                 numItems = 0
@@ -59,6 +86,7 @@ class CheckOperation:
         else:
             allowed = False
             numItems = 0
+        print("user authenticat completed")
         return user_inst, allowed, numItems
 
 
@@ -102,12 +130,62 @@ class CheckOperation:
             Records.objects.create(
                 user_id = usr_inst,
                 object_id = obj_inst,
-                status = 1,
-                active = True
+                type = 1,
+                status = True
             )
 
-            obj_inst.availability = 'N'
-            obj_inst.save()
+            self.change_obj_availability(obj_inst)
+
+
+
+
+    def get_user_active_records(self, usr_id, obj_ids):
+        """takes all instances of the user in the records table"""
+
+        avail_checkin_records = []
+        not_avail_checkin_inst = []
+        avail_checkin_inst = []
+
+        user_inst = self.get_user_instance(usr_id)
+        for obj in obj_ids:
+            obj_inst = self.get_object_instance(obj)
+            print(obj_inst)
+            try:
+                record_list = Records.objects.get(
+                    user_id=user_inst,
+                    object_id=obj,
+                    status=True,
+                    )
+                avail_checkin_records.append(record_list)
+                avail_checkin_inst.append(obj_inst)
+            except ObjectDoesNotExist:
+                not_avail_checkin_inst.append(obj_inst)
+        return user_inst, avail_checkin_records, avail_checkin_inst, not_avail_checkin_inst
+
+
+
+    def checkin_objs(self, user_inst, avail_checkin_records, avail_checkin_inst):
+        """ Check in operation:
+            - create new record in records table
+            - update records table
+            - change object availability """
+
+        for record in avail_checkin_records:
+            record.status = 0
+            record.save()
+
+        self.change_obj_availability(obj_inst)
+
+        for obj_inst in avail_checkin_inst:
+            Records.objects.create(
+                user_id = user_inst,
+                object_id = obj_inst,
+                type = 0,
+                status = False,
+            )
+
+
+
 
 
 def perform_checkout(form):
@@ -133,10 +211,36 @@ def perform_checkout(form):
         message = "Checkout was not successful! The user is not registered in the system"
 
     context = {
-        "sucess":success,
+        "success":success,
         "message":message,
         "user_inst":user_inst,
-        "avail_checkout":avail_checkout,
-        "not_avail_checkout":not_avail_checkout
+        "check_items_success":avail_checkout,
+        "check_items_fail":not_avail_checkout
+    }
+    return context
+
+
+
+
+def perform_checkin(form):
+    op = CheckOperation(form)
+    usr_id, obj_ids = op.distinguish_ids()
+    user_inst, avail_checkin_records, avail_checkin_inst, not_avail_checkin = op.get_user_active_records(usr_id, obj_ids)
+
+    if user_inst:       #If user exists
+        op.checkin_objs(user_inst, avail_checkin_records, avail_checkin_inst)
+        success = True
+        message = "Checkin was sucessful!"
+    else:
+        success = False
+        message = "Checkin was not successful! The user is not registered "
+
+
+    context = {
+        "success":success,
+        "message":message,
+        "user_inst":user_inst,
+        "check_items_success":avail_checkin_inst,
+        "check_items_fail":not_avail_checkin,
     }
     return context

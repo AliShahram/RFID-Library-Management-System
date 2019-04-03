@@ -78,8 +78,8 @@
                 <td>{{ elem.user_id }}</td>
                 <td>{{ elem.object_id }}</td>
                 <td>{{ elem.date }}</td>
-                <td>{{ elem.type }}</td>
-                <td>{{ elem.status }}</td>
+                <td>{{ elem.get_type_display }}</td>
+                <td>{{ elem.get_status_display }}</td>
               </tr>
             {% endfor %}
           </tbody>

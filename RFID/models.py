@@ -48,11 +48,19 @@ class Records(models.Model):
     )
 
 
+    ACTIVE = True
+    COMPLETED = False
+
+    STATUS_CHOICES = (
+        (ACTIVE, 'Active'),
+        (COMPLETED, 'Completed')
+    )
+
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     object_id = models.ForeignKey(Object, on_delete=models.PROTECT)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=CHECK_OUT)
-    status = models.BooleanField(default=True)
+    status = models.BooleanField(choices=STATUS_CHOICES, default=CHECK_OUT)
 
     class Meta:
         unique_together = (('user_id', 'object_id', 'date'),)

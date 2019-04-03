@@ -16,7 +16,7 @@ OBJ_AVAILABILITY_CHOICES = (
 RECORD_TYPE_CHOICES = (
     ('', ("-- Type")),
     (1, ("Check Out")),
-    (2, ("Check In")),
+    (0, ("Check In")),
 )
 
 

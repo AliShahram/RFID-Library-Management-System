@@ -42,7 +42,7 @@ class UserSearch(View):
 
 
 class UserOperation(View):
-    template = 'student/home.html'
+    template = 'student/op_result.html'
 
     def post(self, request):
         form = Operation(request.POST)
@@ -54,3 +54,6 @@ class UserOperation(View):
                 result = perform_checkout(form)
             else:
                 result = perform_checkin(form)
+
+        context = {'qResult':result}
+        return render(request, self.template, context)
