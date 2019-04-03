@@ -15,7 +15,7 @@
       <div class="database_select">
         <button onclick="divVisibility('record_table'); table_is_record();" class="btn btn-info" id="record_btn">Records</button>
         <button onclick="divVisibility('object_table'); table_is_object();" class="btn btn-info" id="object_btn">Objects</button>
-        <button onclick="divVisibility('person_table'); table_is_person();" class="btn btn-info" id="person_btn">Persons</button>
+        <button onclick="divVisibility('person_table'); table_is_person();" class="btn btn-info" id="person_btn">Users</button>
       </div>
 
       <form action="search" method="get" class="form-group">
@@ -26,8 +26,9 @@
           {{form.availability |as_crispy_field}}
         </div>
         <div id="record_table" class="database_choice">
-          {{form.record_date |as_crispy_field}}
-          {{form.record_status |as_crispy_field}}
+          {{form.date |as_crispy_field}}
+          {{form.type |as_crispy_field}}
+          {{form.status |as_crispy_field}}
         </div>
         <div id="person_table" class="database_choice">
         </div>
@@ -54,6 +55,31 @@
                 <td>{{ elem.get_availability_display }}</td>
                 <td>{{ elem.max_time }}</td>
                 <td>{{ elem.get_location_display }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        {% endif %}
+      </table>
+      <table class="table table-hover">
+        {% if table == 'record' %}
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Object</th>
+              <th>Time</th>
+              <th>Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for elem in qResult.qs %}
+              <tr>
+                <td>{{ elem.user_id }}</td>
+                <td>{{ elem.object_id }}</td>
+                <td>{{ elem.date }}</td>
+                <td>{{ elem.get_type_display }}</td>
+                <td>{{ elem.get_status_display }}</td>
               </tr>
             {% endfor %}
           </tbody>

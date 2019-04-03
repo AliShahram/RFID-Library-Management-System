@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('RFID/', include('django.contrib.auth.urls')),
     path('RFID/', include('RFID.urls')),
+    path('', include('student.urls')),
 ]

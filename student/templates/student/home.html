@@ -1,0 +1,68 @@
+{% extends 'student/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+  {% block content %}
+        <div class="col-sm-6">
+          <div class="search-box">
+            <h6>Search for items</h6>
+            <form class="form-group" action="user-search" method="get">
+              {% csrf_token %}
+              {{searchForm.name |as_crispy_field}}
+              <button type="submit" class="btn btn-success">Search</button>
+            </form>
+            {% if message %}
+            <div class="message">
+              <h6>{{ message }}</h6>
+            </div>
+            {% endif %}
+            <table class="table table-hover">
+              {% if qResult %}
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Availability</th>
+                    <th>Max Checkout Days</th>
+                    <th>Location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for elem in qResult %}
+                    <tr>
+                      <td>{{ elem.name }}</td>
+                      <td>{{ elem.get_availability_display }}</td>
+                      <td>{{ elem.max_time }}</td>
+                      <td>{{ elem.get_location_display }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              {% endif %}
+            </table>
+          </div>
+          <div class="col-sm-7">
+            <div class="operation-box">
+              <h6>Perform a check-in or check-out</h6>
+              <form class="form-group" action="user-operation" method="post">
+                {% csrf_token %}
+                {{checkform | crispy}}
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-sm-5">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="search-help border-left">
+            <h5>Help:</h5>
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-action">Search objects by name to see if they are available for checkout</li>
+              <li class="list-group-item list-group-item-action">You can check in/out maximum of Five items at once</li>
+              <li class="list-group-item list-group-item-action">The reader scans the tags and fills all the fields</li>
+              <li class="list-group-item list-group-item-action">If the items are correct, press 'Submit' to complete the operation</li>
+            </ul>
+          </div>
+        </div>
+  {% endblock %}
