@@ -174,8 +174,6 @@ class CheckOperation:
             record.status = 0
             record.save()
 
-        self.change_obj_availability(obj_inst)
-
         for obj_inst in avail_checkin_inst:
             Records.objects.create(
                 user_id = user_inst,
@@ -183,8 +181,7 @@ class CheckOperation:
                 type = 0,
                 status = False,
             )
-
-
+            self.change_obj_availability(obj_inst)
 
 
 

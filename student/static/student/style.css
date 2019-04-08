@@ -59,11 +59,29 @@ a:hover {
   max-width: 150px;
 }
 
+.user-name {
+  display: inline-block;
+  position: static;
+}
+
 .operation-box {
   margin-left: 40px;
 }
 
 
 .results_box {
-  margin: 20px;
+  margin: 40px;
+}
+
+.message-box {
+  margin: 10px;
+  display: block;
+}
+
+.title-box {
+  display: block;
+}
+
+.alert {
+  display:inline-block;
 }

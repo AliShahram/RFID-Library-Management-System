@@ -56,8 +56,8 @@ class Records(models.Model):
         (COMPLETED, 'Completed')
     )
 
-    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
-    object_id = models.ForeignKey(Object, on_delete=models.PROTECT)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    object_id = models.ForeignKey(Object, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=CHECK_OUT)
     status = models.BooleanField(choices=STATUS_CHOICES, default=CHECK_OUT)
