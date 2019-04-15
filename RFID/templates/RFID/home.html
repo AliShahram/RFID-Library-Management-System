@@ -2,6 +2,7 @@
 {% extends 'RFID/base.html' %}
 {% load crispy_forms_tags %}
 {% load i18n %}
+{% load staticfiles %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -26,6 +27,7 @@
           {{form.availability |as_crispy_field}}
         </div>
         <div id="record_table" class="database_choice">
+          {{form.date |as_crispy_field}}
           {{form.type |as_crispy_field}}
           {{form.status |as_crispy_field}}
         </div>
@@ -34,10 +36,8 @@
         {{form.table.as_hidden }}
         <button type="submit" class="btn btn-success">Search</button>
       </form>
-    </div>
-    <div class="container">
-      <table class="table table-hover">
-        {% if table == 'object' %}
+      {% if table == 'object' %}
+        <table class="table table-hover">
           <thead>
             <tr>
               <th>Type</th>
@@ -57,15 +57,15 @@
               </tr>
             {% endfor %}
           </tbody>
-        {% endif %}
-      </table>
-      <table class="table table-hover">
-        {% if table == 'record' %}
+        </table>
+      {% endif %}
+      {% if table == 'record' %}
+        <table class="table table-hover">
           <thead>
             <tr>
               <th>User</th>
               <th>Object</th>
-              <th>Time</th>
+              <th>Date</th>
               <th>Type</th>
               <th>Status</th>
             </tr>
@@ -82,10 +82,10 @@
               </tr>
             {% endfor %}
           </tbody>
-        {% endif %}
-      </table>
-      <table class="table table-hover">
-        {% if table == 'person' %}
+        </table>
+      {% endif %}
+      {% if table == 'person' %}
+        <table class="table table-hover">
           <thead>
             <tr>
               <th>First Name</th>
@@ -104,8 +104,8 @@
               </tr>
             {% endfor %}
           </tbody>
-          {% endif %}
-      </table>
+        </table>
+      {% endif %}
     </div>
   </div>
   <div class="col-sm-2">

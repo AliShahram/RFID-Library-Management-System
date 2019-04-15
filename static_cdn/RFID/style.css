@@ -1,0 +1,117 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-family: "Roboto",sans-serif;
+
+}
+
+/* ----- Base HTML Page ------ */
+
+.header {
+  background-color: 	#A52A2A;
+  color: black;
+  padding: 10px;
+}
+
+.header-title {
+  padding: 10px;
+}
+
+.full-width {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.side-bar {
+  background-color: #282828;
+  height: 100%;
+}
+
+.side-bar-buttons {
+  color: white;
+  background-color: #282828;
+}
+
+a:hover {
+  color: black;
+}
+
+
+
+/* ----- Home Page ---- */
+
+.search-help {
+  margin: 40px;
+  padding: 10px;
+  color: #727272;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  border-width: 3px;
+}
+
+.search-box {
+  margin: 40px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+.database_select{
+  margin: 0px;
+}
+
+.database_choice{
+  width: 150px;
+  display: None;
+}
+
+.active {
+  background: black;
+}
+
+.user_search {
+  width: 100px;
+}
+
+.search-result {
+  margin-left: 10px;
+  padding: 20px;
+}
+
+
+
+/* ------- User Page ------ */
+
+.message {
+  margin: 10px;
+  margin-left: 30px;
+}
+
+.asteriskField {
+    display: none;
+}
+
+.box-title {
+  border-bottom-style: solid;
+  border-bottom-color: #727272;
+  border-bottom-width: 2px;
+
+}
+
+.box {
+  margin: 30px;
+  padding: 20px;
+  width: 75%;
+  margin-left: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+.form-field {
+  margin-top: 5px;
+}

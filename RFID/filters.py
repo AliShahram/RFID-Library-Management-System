@@ -1,6 +1,7 @@
 from .models import *
 from .forms import *
 import django_filters
+from django_filters import *
 
 class ObjectFilter(django_filters.FilterSet):
     class Meta:
@@ -18,6 +19,7 @@ class ObjectFilter(django_filters.FilterSet):
 
 
 class RecordsFilter(django_filters.FilterSet):
-     class Meta:
-         model = Records
-         fields = ['date', 'type', 'status',]
+    date = IsoDateTimeFilter()
+    class Meta:
+        model = Records
+        fields = ['date', 'type', 'status',]
