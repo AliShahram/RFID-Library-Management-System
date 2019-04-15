@@ -57,7 +57,7 @@ class SearchHomePage(LoginRequiredMixin, View):
                     query_result = User.objects.all()
                 table = 'person'
 
-            #If the table is records table_is_object
+            #If the table is records
             elif search_form['table'].value() == 'record':
                 #if the name is empty return all records
                 records_list = Records.objects.all()

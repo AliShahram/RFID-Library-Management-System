@@ -12,6 +12,15 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'RFID/style.css' %}">
 
+  <!-- Include FontAwesome; required for icon display #} -->
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+   <!-- Include jQuery -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+   <!-- Django Tempus Dominus assets are included in `{{ form.media }}` -->
+   {{ form.media }}
+
   <!-- Font Awesome JS -->
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -28,7 +37,7 @@
         </div>
         <div class="col-sm-6">
           <div class="header-title">
-            <h3>RFID Self-Service System</h3>
+            <h3>Self-Service Library Management System</h3>
           </div>
         </div>
       </div>

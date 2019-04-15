@@ -1,15 +1,53 @@
 {% extends 'student/base.html' %}
-{% load static %}
+{% load staticfiles %}
 
 
 {% block content %}
   <div class="row">
-    <div class="results_box">
-      <h5> {{ qResult.message }}</h5>
-      <h1> {{ qResult.user_inst.first_name}}</h1>
-      <h1> {{ qResult.user_inst.last_name}}</h1>
-      <h1> {{qResult.avail_checkout}}</h1>
-      <h1> {{qResult.not_avail_checkout}}</h1>
+    <div class="container">
+      <div class="results_box">
+        <div class="display-block">
+          <div class="message-box alert alert-danger">
+            <h4> {{ qResult.message }}</h4>
+          </div>
+        </div>
+        <div class="display-block">
+          <div class="alert alert-success">
+            <h5>User: </h5>
+          </div>
+          <div class="user-name">
+            <h5> {{ qResult.user_inst.first_name}}</h5>
+          </div>
+          <div class="user-name">
+            <h5> {{ qResult.user_inst.last_name}}</h5>
+          </div>
+        </div>
+        {% if qResult.check_items_success %}
+          <div class="display-blcok">
+            <div class="alert alert-success">
+              <h5>Items checked successfuly: </h5>
+            </div>
+          </div>
+          {% for item in qResult.check_items_success %}
+            <div class="margin-left">
+              <h5>{{item}}</h5>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        {% if qResult.check_items_fail %}
+          <div class="display-block">
+            <div class="alert alert-success">
+              <h5>Items not checked: </h5>
+            </div>
+          </div>
+          {% for item in qResult.check_items_fail %}
+            <div class="margin-left">
+              <h5>{{item}}</h5>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
     </div>
   </div>
 {% endblock %}

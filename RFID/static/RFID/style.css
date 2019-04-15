@@ -56,6 +56,9 @@ a:hover {
 
 .search-box {
   margin: 40px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 }
 
 .database_select{
@@ -75,8 +78,12 @@ a:hover {
   width: 100px;
 }
 
-
-
+.search-result {
+  margin-left: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
 
 
 
@@ -99,10 +106,12 @@ a:hover {
 }
 
 .box {
-  margin: 10px;
-  padding: 10px;
+  margin: 30px;
+  padding: 20px;
   width: 75%;
   margin-left: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 }
 
 .form-field {

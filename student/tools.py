@@ -174,8 +174,6 @@ class CheckOperation:
             record.status = 0
             record.save()
 
-        self.change_obj_availability(obj_inst)
-
         for obj_inst in avail_checkin_inst:
             Records.objects.create(
                 user_id = user_inst,
@@ -183,8 +181,7 @@ class CheckOperation:
                 type = 0,
                 status = False,
             )
-
-
+            self.change_obj_availability(obj_inst)
 
 
 
@@ -199,7 +196,10 @@ def perform_checkout(form):
             if len(avail_checkout)>0:       #If there is objects available to checkout
                 op.checkout_objs(user_inst, avail_checkout)         #Perform the checkout
                 success = True
-                message = "Checkout was sucessful!"
+                if len(not_avail_checkout)>0:
+                    message = "Checkout was partially sucessful! Some items not checked out"
+                else:
+                    message = "Checkout was successful"
             else:
                 success = False
                 message = "Checkout was not successful! Scanned items are not available for checkout"
@@ -228,9 +228,16 @@ def perform_checkin(form):
     user_inst, avail_checkin_records, avail_checkin_inst, not_avail_checkin = op.get_user_active_records(usr_id, obj_ids)
 
     if user_inst:       #If user exists
-        op.checkin_objs(user_inst, avail_checkin_records, avail_checkin_inst)
-        success = True
-        message = "Checkin was sucessful!"
+        if len(avail_checkin_inst) > 0:
+            op.checkin_objs(user_inst, avail_checkin_records, avail_checkin_inst)
+            success = True
+            if len(not_avail_checkin)>0:
+                message = "Checkin was partially sucessful! Some items not check in"
+            else:
+                message = "Checkin was successful!"
+        else:
+            success = False
+            message = "Checkin was not successful! Items are already checked in or are not registered!"
     else:
         success = False
         message = "Checkin was not successful! The user is not registered "
