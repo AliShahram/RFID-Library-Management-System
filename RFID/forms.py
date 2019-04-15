@@ -5,6 +5,8 @@ from django.forms import ModelForm, TextInput, Form
 from django.core.exceptions import ValidationError
 import datetime
 
+from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
+
 #Local Imports
 from .models import *
 from .choices import *
@@ -96,7 +98,17 @@ class SearchBar(forms.Form):
     availability = forms.ChoiceField(choices = OBJ_AVAILABILITY_CHOICES, label="", initial='', required=False,
     widget=forms.Select(attrs={'class':'form-field'}))
 
-    date = forms.DateField(initial='', label="Date", required=False)
+    #date = forms.DateField(initial='', label="Date", required=False)
+
+    date = forms.DateField(
+        required=False,
+        widget=DatePicker(
+            options={
+                'minDate': '2019-04-01',
+                'maxDate': '2025-01-20',
+            },
+        ),
+    )
 
     type = forms.ChoiceField(choices = RECORD_TYPE_CHOICES, label="", initial='', required=False,
     widget=forms.Select(attrs={'class':'form-field'}))

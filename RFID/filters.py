@@ -20,6 +20,12 @@ class ObjectFilter(django_filters.FilterSet):
 
 class RecordsFilter(django_filters.FilterSet):
     date = IsoDateTimeFilter()
+    print(date)
     class Meta:
         model = Records
         fields = ['date', 'type', 'status',]
+        fields = {
+            'type': ['exact'],
+            'status': ['exact'],
+            'date': ['icontains', 'date__year', 'date__month', 'date__day'],
+        }

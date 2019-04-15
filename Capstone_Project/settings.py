@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'student',
     'crispy_forms',
     'django_extensions',
+    'tempus_dominus',
 ]
 
 MIDDLEWARE = [
