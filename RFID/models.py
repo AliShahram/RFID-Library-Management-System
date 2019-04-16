@@ -58,12 +58,13 @@ class Records(models.Model):
 
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     object_id = models.ForeignKey(Object, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True, blank=True)
+    date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=CHECK_OUT)
     status = models.BooleanField(choices=STATUS_CHOICES, default=CHECK_OUT)
 
     class Meta:
-        unique_together = (('user_id', 'object_id', 'date'),)
+        unique_together = (('user_id', 'object_id', 'date', 'time'),)
 
     def __str__(self):
         return "%s, %s" %(self.user_id, self.object_id)

@@ -40,6 +40,13 @@ a:hover {
   color: black;
 }
 
+.main {
+  background: white;
+}
+
+#new-container {
+  background: #282828;
+}
 
 
 /* ----- Home Page ---- */
@@ -81,6 +88,8 @@ a:hover {
 .search-result {
   margin-left: 10px;
   padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 }
 
 

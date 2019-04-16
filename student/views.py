@@ -57,3 +57,10 @@ class UserOperation(View):
 
         context = {'qResult':result}
         return render(request, self.template, context)
+
+
+class AboutPage(View):
+    template = 'student/about.html'
+
+    def get(self, request):
+        return render(request, self.template)

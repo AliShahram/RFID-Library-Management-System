@@ -40,6 +40,13 @@ a:hover {
   color: black;
 }
 
+.main {
+  background: white;
+}
+
+#new-container {
+  background: #282828;
+}
 
 
 /* ----- Home Page ---- */
