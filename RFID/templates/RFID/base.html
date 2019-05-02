@@ -32,34 +32,41 @@
       <div class="row header">
         <div class="col-sm-6">
           <div class="header-title">
-            <h1>Earlham college</h1>
+            <h1 style="color:white">Earlham college</h1>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="header-title">
-            <h3>Self-Service Library Management System</h3>
+            <h3 style="color:white">Self-Service Library Management System</h3>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-2 side-bar">
-          <div class="list-group list-group-flush">
-            <a href="{% url 'home' %}" class="list-group-item side-bar-buttons">
-              <h5>Home</h5></a>
-            <a href="{% url 'user' %}" class="list-group-item side-bar-buttons">
-              <h5>Users</h5></a>
-            <a href="{% url 'object' %}" class="list-group-item side-bar-buttons">
-              <h5>Objects</h5></a>
-            <a href="{% url 'logout' %}" class="list-group-item side-bar-buttons">
-              <h5>Log out</h5></a>
+      <div id="new-container"
+        <div class="row">
+          <div class="col-sm-2 side-bar">
+            <div class="list-group list-group-flush">
+              <a href="{% url 'home' %}" class="list-group-item side-bar-buttons">
+                <h5>Home</h5></a>
+              <a href="{% url 'user' %}" class="list-group-item side-bar-buttons">
+                <h5>Users</h5></a>
+              <a href="{% url 'object' %}" class="list-group-item side-bar-buttons">
+                <h5>Objects</h5></a>
+              <a href="{% url 'logout' %}" class="list-group-item side-bar-buttons">
+                <h5>Log out</h5></a>
+            </div>
           </div>
-        </div>
-        <div class="col-sm-10">
-          {% block content %}
-          {% endblock %}
+          <div class="col-sm-10 main">
+            {% block content %}
+            {% endblock %}
+          </div>
         </div>
       </div>
     </div>
   </main>
 </body>
 </html>
+
+<script type="text/javascript">
+  var height = $('.main').height()
+  $('.side-bar').height(height)​
+</script>

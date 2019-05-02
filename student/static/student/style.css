@@ -40,6 +40,13 @@ a:hover {
   color: black;
 }
 
+.main {
+  background: white;
+}
+
+#new-container {
+  background: #282828;
+}
 
 /* ----- Home Page ---- */
 
@@ -97,4 +104,138 @@ a:hover {
 .form-check {
   display: inline-block;
   margin: 5px;
+}
+
+
+
+
+/* ----- About Page ---- */
+
+
+.img-container {
+    margin-left: 10px;
+    margin-top: 80px;
+    width: 450px;
+    height: 700px;
+    display: inline-block;
+    float: left;
+    position: relative;
+}
+
+.img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+
+
+.text-box {
+  display: inline-block;
+  position: relative;
+  margin-top: 40px;
+  margin-left: 30px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  clear: left;
+  float: right;
+}
+
+
+.body-text {
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.contact-footer {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
+
+.media-icon{
+  position: relative;
+  display: inline;
+  float: left;
+  max-height: 20px;
+  margin:5px;
+  width: 100%;
+}
+
+.fa-icon{
+  float: left;
+}
+
+.fa{
+  padding: 7px;
+  font-size: 20px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  margin-right: 15px;
+  color: #fff;
+  margin-bottom: 8px;
+  background-color: black;
+}
+
+.fab{
+  padding: 7px;
+  font-size: 20px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  margin-right: 15px;
+  color: #fff;
+  margin-bottom: 8px;
+  background-color: black;
+}
+
+
+.fas{
+  padding: 5px;
+  font-size: 20px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  border-radius: 3px;
+}
+
+.fa:hover{
+  opacity: 0.7;
+  background-color: #6b639b;
+}
+
+.fab:hover{
+  opacity: 0.7;
+  background-color: #6b639b;
+}
+
+.fas:hover{
+  opacity: 0.7;
+  background-color: #6b639b;
+}
+
+
+.media-information {
+  margin-top: 4px;
+}
+
+.contact-icon {
+  margin: 20px;
+}
+
+.contact-info {
+  margin: 10px;
 }
