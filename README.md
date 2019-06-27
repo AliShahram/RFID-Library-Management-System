@@ -16,7 +16,8 @@ Admin Login:
 <img width="1439" alt="Screen Shot 2019-04-02 at 11 11 09 PM" src="https://user-images.githubusercontent.com/25894620/60272575-1084fa00-98ba-11e9-9597-7c18ee84068a.png">
 
 Student User Interface:
-<img width="1423" alt="Screen Shot 2019-04-02 at 11 21 37 PM" src="https://user-images.githubusercontent.com/25894620/60272657-31e5e600-98ba-11e9-8978-ecf9a69f412f.png">
+<img width="1438" alt="Screen Shot 2019-04-08 at 4 53 18 PM" src="https://user-images.githubusercontent.com/25894620/60272850-86896100-98ba-11e9-8334-03988017f0c2.png">
+
 
 Administrator Interface
 <img width="1438" alt="Screen Shot 2019-04-08 at 4 57 18 PM" src="https://user-images.githubusercontent.com/25894620/60272701-41652f00-98ba-11e9-8f6f-cd327c29720d.png">
