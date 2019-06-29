@@ -8,9 +8,9 @@ A full-stack library management system built, as part of Senior Capstone project
 * **Software** -- PostgreSQL, Python, Django, HTML, CSS, Bootstrap
 
 ## Documentation
-Poster: https://drive.google.com/file/d/1ld1MfTWFNynK15xh7fff-FsJvxiuhP43/view?usp=sharing
-Proposal: https://drive.google.com/file/d/1isigOQsbn94KmuE0_F9zJoqZWs0KxAZr/view?usp=sharing
-Paper: https://drive.google.com/file/d/1dmml0dZB9LXT5lMwiyttxiSU-eonR-mv/view?usp=sharing
+* **Poster**: https://drive.google.com/file/d/1ld1MfTWFNynK15xh7fff-FsJvxiuhP43/view?usp=sharing
+* **Proposal**: https://drive.google.com/file/d/1isigOQsbn94KmuE0_F9zJoqZWs0KxAZr/view?usp=sharing
+* **Paper**: https://drive.google.com/file/d/1dmml0dZB9LXT5lMwiyttxiSU-eonR-mv/view?usp=sharing
 
 ## Author
 
