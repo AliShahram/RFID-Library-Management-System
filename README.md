@@ -1,12 +1,18 @@
 # RFID Self-Service Library Management System
 
-Senior capstone project to create a comprehensive library management system for Computer Science Department at Earlham college. Enabling inventory, self-check in/out, and keeping record of student use. Handing over 800 hardware devices and used by over 150 students. 
+A full-stack library management system built, as part of Senior Capstone project for the Computer Science Department at Earlham College. The system has a student user interface, for students to look up items and perform self check-in and check out. The administrator interface allows the department add and manage device and user information, as well as to set measure on check-in and check out operations. 
+
 
 ## Tech Stack
 * **Hardware** -- UHF RFID reader, Passive RFID tags 
 * **Software** -- PostgreSQL, Python, Django, HTML, CSS, Bootstrap
 
-## Authors
+## Documentation
+Poster: https://drive.google.com/file/d/1ld1MfTWFNynK15xh7fff-FsJvxiuhP43/view?usp=sharing
+Proposal: https://drive.google.com/file/d/1isigOQsbn94KmuE0_F9zJoqZWs0KxAZr/view?usp=sharing
+Paper: https://drive.google.com/file/d/1dmml0dZB9LXT5lMwiyttxiSU-eonR-mv/view?usp=sharing
+
+## Author
 
 * **Ali Shahram Musavi** 
 Earlham College 19
